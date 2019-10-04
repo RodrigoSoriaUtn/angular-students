@@ -12,7 +12,6 @@ import { EditComponent } from './components/students/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormsModule,
     AddComponent,
     ListComponent,
     NavigationBarComponent,
@@ -20,6 +19,7 @@ import { EditComponent } from './components/students/edit/edit.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
