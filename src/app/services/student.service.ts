@@ -7,7 +7,7 @@ import { Student } from '../models/student';
 export class StudentService {
 
   id = 0
-  students = new Array()
+  students = new Array<Student>()
 
   constructor() { }
 

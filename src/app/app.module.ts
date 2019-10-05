@@ -8,6 +8,7 @@ import { AddComponent } from './components/students/add/add.component';
 import { ListComponent } from './components/students/list/list.component';
 import { NavigationBarComponent } from './components/students/navigation-bar/navigation-bar.component';
 import { EditComponent } from './components/students/edit/edit.component';
+import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { EditComponent } from './components/students/edit/edit.component';
     AddComponent,
     ListComponent,
     NavigationBarComponent,
-    EditComponent
+    EditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

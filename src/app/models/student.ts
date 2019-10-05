@@ -3,10 +3,15 @@ export class Student {
     id : Number
     name : String
     surName : String
-    Email : String
-    DNI : String
-    Age : String
+    email : String
+    dni : Number
+    age : Number
 
-    constructor() {}
+    constructor() {
+        this.name = "";
+        this.surName = "";
+        this.email = "";
+        this.age = 0;
+    }
 
 }

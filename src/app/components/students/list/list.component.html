@@ -1,1 +1,25 @@
-<p>list works!</p>
+<table>
+
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Age</td>
+            <td>E-mail</td>
+            <td>DNI</td>
+            <td colspan="2">Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of studentList">
+            <td>{{ student.name }}</td>
+            <td>{{ student.surName }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.dni}}</td>
+            <td> <button class="btn btn-success"> Edit </button> </td>
+            <td> <button class="btn btn-danger"> Remove </button> </td>
+        </tr>
+    </tbody>
+
+</table>
