@@ -25,4 +25,17 @@ export class StudentService {
     return this.students.filter( (s) => s.id == id)[0]
   }
 
+  public deleteStudentById(id : Number) {
+    this.students = this.students.filter((v) => v.id != id)
+  }
+
+  public editStudent(student : Student) {
+      let studentFromList = this.getById(student.id)
+      studentFromList.name = student.name
+      studentFromList.surName = student.surName
+      studentFromList.email = student.email
+      studentFromList.dni = student.dni
+      studentFromList.age = student.age
+  }
+
 }

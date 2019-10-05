@@ -14,4 +14,8 @@ export class Student {
         this.age = 0;
     }
 
+    get fullName() {
+        return this.name + " " + this.surName
+    }
+
 }

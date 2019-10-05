@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -9,16 +10,20 @@ import { Student } from 'src/app/models/student';
 })
 export class EditComponent implements OnInit {
 
+  studentId : Number
+  completeName : String
+
   name : String
   surName : String
   email : String
   dni : Number
   age : Number
 
-  constructor(private studentService : StudentService) { }
+  constructor(private studentService : StudentService, private route : ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.studentId = Number(this.route.snapshot.paramMap.get('id'))
+    this.completeName = this.studentService.getById(this.studentId).fullName
   }
 
   addStudent() {
