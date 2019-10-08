@@ -12,13 +12,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let student of studentList">
-            <td>{{ student.name }}</td>
-            <td>{{ student.surName }}</td>
-            <td>{{ student.age }}</td>
-            <td>{{ student.email }}</td>
-            <td>{{ student.dni}}</td>
-            <td> <button class="btn btn-success"> Edit </button> </td>
-            <td> <button class="btn btn-danger"> Remove </button> </td>
+            <td> {{ student.name }} </td>
+            <td> {{ student.surName }} </td>
+            <td> {{ student.age }} </td>
+            <td> {{ student.email }} </td>
+            <td> {{ student.dni }} </td>
+            <td> <button class="btn btn-success" [routerLink]="['/edit/', student.id]"> Edit </button> </td>
+            <td> <button class="btn btn-danger" (click)="removeStudent(student.id)" > Remove </button> </td>
         </tr>
     </tbody>
 

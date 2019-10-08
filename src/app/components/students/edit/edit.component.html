@@ -1,5 +1,5 @@
-<h3> <!-- I only need the name -->
-    Editing {{ student.fullName }} 
+<h3> 
+    Editing {{ completeName }} 
 </h3>
     
 <form>
@@ -8,7 +8,7 @@
         <input type="text" name="name" [(ngModel)]="name" class="form-control" id="input-student-name" placeholder="name">
 
         <label for="input-student-surname">Surname</label>
-        <input type="text" name="surName" [(ngModel)]="surname" class="form-control" id="input-student-surname" placeholder="surname">
+        <input type="text" name="surName" [(ngModel)]="surName" class="form-control" id="input-student-surname" placeholder="surname">
         
         <label for="input-student-email">E-mail</label>
         <input type="email" name="email" [(ngModel)]="email" class="form-control" id="input-student-email" placeholder="email@email">
@@ -19,7 +19,7 @@
         <label for="input-student-age">Age</label>
         <input type="number" name="age" [(ngModel)]="age" class="form-control" id="input-student-age">
 
-        <button class="btn btn-primary" (click)="addStudent()">Add</button>
+        <button type="button" class="btn btn-primary" (click)="editStudent()">Confirm!</button>
 
     </div>
 </form>

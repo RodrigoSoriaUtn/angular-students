@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -19,24 +19,34 @@ export class EditComponent implements OnInit {
   dni : Number
   age : Number
 
-  constructor(private studentService : StudentService, private route : ActivatedRoute) { }
+  constructor(private studentService : StudentService, 
+    private route : ActivatedRoute,
+    private router : Router) { }
 
   ngOnInit() {
     this.studentId = Number(this.route.snapshot.paramMap.get('id'))
-    this.completeName = this.studentService.getById(this.studentId).fullName
+    let student = this.studentService.getById(this.studentId)
+    this.completeName = student.fullName
+    this.name = student.name
+    this.surName = student.surName
+    this.email = student.email
+    this.dni = student.dni
+    this.age = student.age
   }
 
-  addStudent() {
+  editStudent() {
       console.log("Editing a student!");
       let student = new Student();
+      student.id = this.studentId;
       student.name = this.name;
       student.surName = this.surName;
       student.email = this.email;
       student.dni = this.dni;
       student.age = this.age;
 
-      this.studentService.addStudent(student);
+      this.studentService.editStudent(student)
       this.clear();
+      this.router.navigate(['/list'])
   }
 
   clear() {

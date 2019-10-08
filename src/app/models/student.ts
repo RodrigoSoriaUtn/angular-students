@@ -6,6 +6,7 @@ export class Student {
     email : String
     dni : Number
     age : Number
+    careerId : Number
 
     constructor() {
         this.name = "";
