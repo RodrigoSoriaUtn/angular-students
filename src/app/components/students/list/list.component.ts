@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
+import { StudentApiService } from 'src/app/services/student-api.service'
 import { Student } from 'src/app/models/student';
 
 @Component({
@@ -11,15 +12,22 @@ export class ListComponent implements OnInit {
 
   studentList : Array<Student>
 
-  constructor(private studentService : StudentService) { }
+  constructor(private studentService : StudentService, 
+    private studentsApiService : StudentApiService) { }
 
   ngOnInit() {
-    this.studentList = this.studentService.getAll()
+    //this.studentList = this.studentService.getAll()
+    this.studentsApiService.getAll()
+      .then((data : any) => {
+        console.log(data)
+        this.studentList = data
+      })
+      .catch(message => console.log(message)) 
   }
 
   public removeStudent(id) {
-    this.studentService.deleteStudentById(id)
-    this.studentList = this.studentService.getAll();
+    //this.studentService.deleteStudentById(id)
+    //this.studentList = this.studentService.getAll();
   }
 
 }

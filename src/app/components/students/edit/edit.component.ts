@@ -17,7 +17,6 @@ export class EditComponent implements OnInit {
   surName : String
   email : String
   dni : Number
-  age : Number
 
   constructor(private studentService : StudentService, 
     private route : ActivatedRoute,
@@ -27,22 +26,20 @@ export class EditComponent implements OnInit {
     this.studentId = Number(this.route.snapshot.paramMap.get('id'))
     let student = this.studentService.getById(this.studentId)
     this.completeName = student.fullName
-    this.name = student.name
-    this.surName = student.surName
+    this.name = student.firstName
+    this.surName = student.lastName
     this.email = student.email
     this.dni = student.dni
-    this.age = student.age
   }
 
   editStudent() {
       console.log("Editing a student!");
       let student = new Student();
       student.id = this.studentId;
-      student.name = this.name;
-      student.surName = this.surName;
+      student.firstName = this.name;
+      student.lastName = this.surName;
       student.email = this.email;
       student.dni = this.dni;
-      student.age = this.age;
 
       this.studentService.editStudent(student)
       this.clear();
@@ -54,7 +51,6 @@ export class EditComponent implements OnInit {
     this.surName = "";
     this.email = "";
     this.dni = null;
-    this.age = null;
   }
 
 }

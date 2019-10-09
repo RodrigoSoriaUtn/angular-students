@@ -4,7 +4,6 @@
         <tr>
             <td>Name</td>
             <td>Surname</td>
-            <td>Age</td>
             <td>E-mail</td>
             <td>DNI</td>
             <td colspan="2">Actions</td>
@@ -12,9 +11,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let student of studentList">
-            <td> {{ student.name }} </td>
-            <td> {{ student.surName }} </td>
-            <td> {{ student.age }} </td>
+            <td> {{ student.firstName }} </td>
+            <td> {{ student.lastName }} </td>
             <td> {{ student.email }} </td>
             <td> {{ student.dni }} </td>
             <td> <button class="btn btn-success" [routerLink]="['/edit/', student.id]"> Edit </button> </td>

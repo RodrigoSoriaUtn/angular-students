@@ -13,7 +13,6 @@ export class AddComponent implements OnInit {
   surName : String
   email : String
   dni : Number
-  age : Number
 
   constructor(private studentService : StudentService) { }
 
@@ -24,11 +23,10 @@ export class AddComponent implements OnInit {
   addStudent() {
       console.log("Adding a student!");
       let student = new Student();
-      student.name = this.name;
-      student.surName = this.surName;
+      student.firstName = this.name;
+      student.lastName = this.surName;
       student.email = this.email;
       student.dni = this.dni;
-      student.age = this.age;
 
       this.studentService.addStudent(student);
       this.clear();
@@ -39,7 +37,6 @@ export class AddComponent implements OnInit {
     this.surName = "";
     this.email = "";
     this.dni = null;
-    this.age = null;
   }
 
 }

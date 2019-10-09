@@ -11,25 +11,22 @@ export class StudentService {
 
   constructor() { 
     let student = new Student();
-    student.name = "Ramuel Melon"
-    student.surName = "coton"
-    student.age = 34
+    student.firstName = "Ramuel Melon"
+    student.lastName = "coton"
     student.dni = 19282372
     student.email = "Remuelcoton@coton.com"
     this.addStudent(student)
 
     let student2 = new Student();
-    student2.name = "Cristobal"
-    student2.surName = "colon"
-    student2.age = 56
+    student2.firstName = "Cristobal"
+    student2.lastName = "colon"
     student2.dni = 255311142
     student2.email = "cristco@lon.com"
     this.addStudent(student2)
 
     let student3 = new Student();
-    student3.name = "Clerk Richard"
-    student3.surName = "Menton"
-    student3.age = 19
+    student3.firstName = "Clerk Richard"
+    student3.lastName = "Menton"
     student3.dni = 560093821
     student3.email = "Clerck.m@hotmail.com"
     this.addStudent(student3)
@@ -55,11 +52,10 @@ export class StudentService {
 
   public editStudent(student : Student) {
     let studentFromList = this.getById(student.id)
-    studentFromList.name = student.name
-    studentFromList.surName = student.surName
+    studentFromList.firstName = student.firstName
+    studentFromList.lastName = student.lastName
     studentFromList.email = student.email
     studentFromList.dni = student.dni
-    studentFromList.age = student.age
   }
 
 }
