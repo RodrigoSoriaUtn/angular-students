@@ -34,7 +34,7 @@ export class StudentService {
 
   public addStudent(student : Student) {
     this.id++
-    student.id = this.id
+    student.studentId = this.id
     this.students.push(student)
   }
 
@@ -43,15 +43,15 @@ export class StudentService {
   }
 
   public getById(id : Number) {
-    return this.students.filter( (s) => s.id == id)[0]
+    return this.students.filter( (s) => s.studentId == id)[0]
   }
 
   public deleteStudentById(id : Number) {
-    this.students = this.students.filter((v) => v.id != id)
+    this.students = this.students.filter((v) => v.studentId != id)
   }
 
   public editStudent(student : Student) {
-    let studentFromList = this.getById(student.id)
+    let studentFromList = this.getById(student.studentId)
     studentFromList.firstName = student.firstName
     studentFromList.lastName = student.lastName
     studentFromList.email = student.email

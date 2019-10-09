@@ -15,8 +15,8 @@
             <td> {{ student.lastName }} </td>
             <td> {{ student.email }} </td>
             <td> {{ student.dni }} </td>
-            <td> <button class="btn btn-success" [routerLink]="['/edit/', student.id]"> Edit </button> </td>
-            <td> <button class="btn btn-danger" (click)="removeStudent(student.id)" > Remove </button> </td>
+            <td> <button class="btn btn-success" [routerLink]="['/edit/', student.studentId]"> Edit </button> </td>
+            <td> <button class="btn btn-danger" (click)="removeStudent(student.studentId)" > Remove </button> </td>
         </tr>
     </tbody>
 

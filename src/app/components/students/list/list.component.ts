@@ -26,6 +26,7 @@ export class ListComponent implements OnInit {
   }
 
   public removeStudent(id) {
+    console.log("actually not working. The api does not have an endpoint")
     //this.studentService.deleteStudentById(id)
     //this.studentList = this.studentService.getAll();
   }

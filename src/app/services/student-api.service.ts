@@ -14,7 +14,7 @@ export class StudentApiService {
   private studentObservable : Observable<Student[]>
 
   constructor( private http : HttpClient) {
-    this.httpHeaders = new HttpHeaders({
+    this.httpHeaders = new HttpHeaders({ // TODO : use httpOptions!
       'content-type': 'application/json'
     })
   }
@@ -24,11 +24,12 @@ export class StudentApiService {
   }
 
   updateStudent(student : Student) {
-    
+    return this.http.patch(this.apiUrl, student, this.httpHeaders).toPromise()
   }
 
   getStudentById(studentId : Number) {
-    
+    console.log("Getting student with id : " + studentId)
+    return this.http.get(this.apiUrl + "/" + studentId, this.httpHeaders).toPromise()
   }
 
   getAll() {

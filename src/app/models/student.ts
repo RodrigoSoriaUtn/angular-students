@@ -1,6 +1,6 @@
 export class Student {
 
-    id : Number
+    studentId : Number
     firstName : String
     lastName : String
     email : String
@@ -11,7 +11,6 @@ export class Student {
         this.firstName = "";
         this.lastName = "";
         this.email = "";
-        this.age = 0;
     }
 
     get fullName() {
