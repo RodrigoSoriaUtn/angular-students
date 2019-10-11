@@ -19,8 +19,8 @@ export class StudentApiService {
     })
   }
 
-  insertStudent() {
-
+  insertStudent(student : Student) {
+    return this.http.post(this.apiUrl, student, this.httpHeaders).toPromise();
   }
 
   updateStudent(student : Student) {

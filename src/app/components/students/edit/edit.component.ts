@@ -18,6 +18,7 @@ export class EditComponent implements OnInit {
   surName : String
   email : String
   dni : Number
+  address : String
 
   constructor(private studentService : StudentService, 
     private studentApiService : StudentApiService,
@@ -37,7 +38,7 @@ export class EditComponent implements OnInit {
       })
       .catch(message => {
         console.log("Error from api get by id : " + message)
-        this.router.navigate(['/list'])
+        this.router.navigate(['students/list'])
       })
   }
 
@@ -49,11 +50,17 @@ export class EditComponent implements OnInit {
       student.lastName = this.surName;
       student.email = this.email;
       student.dni = this.dni;
+      student.address = this.address;
 
       //this.studentService.editStudent(student)
-      this.studentApiService.updateStudent(student)
-      this.clear();
-      this.router.navigate(['/list'])
+      this.studentApiService.updateStudent(student).then(response =>{
+        console.log("Student edited ok!")
+        this.clear()
+        this.router.navigate(['students/list'])
+      })
+      .catch(httpError =>{
+        console.log("error while editing a student" + httpError.error)
+      })
   }
 
   clear() {
@@ -61,6 +68,7 @@ export class EditComponent implements OnInit {
     this.surName = "";
     this.email = "";
     this.dni = null;
+    this.address = "";
   }
 
 }

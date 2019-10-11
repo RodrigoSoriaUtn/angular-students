@@ -5,12 +5,14 @@ export class Student {
     lastName : String
     email : String
     dni : Number
+    address : String
     careerId : Number
 
     constructor() {
         this.firstName = "";
         this.lastName = "";
         this.email = "";
+        this.address = "";
     }
 
     get fullName() {

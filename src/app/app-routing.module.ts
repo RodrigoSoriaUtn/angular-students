@@ -4,13 +4,18 @@ import { ListComponent } from './components/students/list/list.component';
 import { AddComponent } from './components/students/add/add.component';
 import { EditComponent } from './components/students/edit/edit.component';
 import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
+import { CareerListComponent } from './components/careers/career-list/career-list.component';
+import { CareerAddComponent } from './components/careers/career-add/career-add.component';
 
 
 const routes: Routes = [
   {path:"", component:ListComponent, pathMatch:"full"},
-  {path:"add", component:AddComponent},
-  {path:"list", component:ListComponent},
-  {path:"edit/:id", component:EditComponent},
+  {path:"students/add", component:AddComponent},
+  {path:"students/list", component:ListComponent},
+  {path:"students/edit/:id", component:EditComponent},
+  {path:"careers/list", component:CareerListComponent},
+  {path:"careers/add", component:CareerAddComponent},
+  {path:"careers", component:CareerListComponent},
   {path:"**", component:PageNotFoundComponent}
 ];
 

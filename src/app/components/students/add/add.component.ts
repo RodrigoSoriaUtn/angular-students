@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
+import { StudentApiService } from 'src/app/services/student-api.service';
 
 @Component({
   selector: 'app-add',
@@ -13,8 +14,10 @@ export class AddComponent implements OnInit {
   surName : String
   email : String
   dni : Number
+  address : String
 
-  constructor(private studentService : StudentService) { }
+  constructor(private studentService : StudentService,
+    private studentApiService : StudentApiService) { }
 
   ngOnInit() {
 
@@ -27,9 +30,19 @@ export class AddComponent implements OnInit {
       student.lastName = this.surName;
       student.email = this.email;
       student.dni = this.dni;
+      student.address = this.address;
+      student.careerId = 1;
 
-      this.studentService.addStudent(student);
-      this.clear();
+      //this.studentService.addStudent(student);
+      this.studentApiService.insertStudent(student)
+        .then(resp => {
+          console.log("student inserted OK!");
+          this.clear();
+        })
+        .catch(errorMessage => {
+          console.log("Error when inserting student");
+          console.log(errorMessage);
+        });
   }
 
   clear() {
@@ -37,6 +50,7 @@ export class AddComponent implements OnInit {
     this.surName = "";
     this.email = "";
     this.dni = null;
+    this.address = "";
   }
 
 }

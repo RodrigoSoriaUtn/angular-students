@@ -10,6 +10,8 @@ import { ListComponent } from './components/students/list/list.component';
 import { NavigationBarComponent } from './components/students/navigation-bar/navigation-bar.component';
 import { EditComponent } from './components/students/edit/edit.component';
 import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
+import { CareerListComponent } from './components/careers/career-list/career-list.component';
+import { CareerAddComponent } from './components/careers/career-add/career-add.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { PageNotFoundComponent } from './components/common/page-not-found/page-n
     ListComponent,
     NavigationBarComponent,
     EditComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CareerListComponent,
+    CareerAddComponent
   ],
   imports: [
     HttpClientModule,
