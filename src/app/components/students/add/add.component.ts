@@ -58,10 +58,6 @@ export class AddComponent implements OnInit {
         });
   }
 
-  onCareerSelected() {
-    console.log(this.selectedCareer);
-  }
-
   clear() {
     this.name = "";
     this.surName = "";

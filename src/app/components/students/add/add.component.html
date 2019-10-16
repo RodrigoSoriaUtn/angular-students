@@ -19,7 +19,7 @@
         <label for="input-student-address">Address</label>
         <input type="text" name="address" [(ngModel)]="address" class="form-control" id="input-student-address" placeholder="address">
 
-        <select name="selectedCareerId" id="selectedCareerId" [(ngModel)]="selectedCareer" (change)="onCareerSelected()">
+        <select name="selectedCareerId" id="selectedCareerId" [(ngModel)]="selectedCareer">
             <option [ngValue]="null"> -- Choose career -- </option>
             <option [ngValue]="career" *ngFor="let career of careers"> {{ career.name }}</option>
         </select>
