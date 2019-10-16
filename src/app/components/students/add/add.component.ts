@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
 import { StudentApiService } from 'src/app/services/student-api.service';
+import { CareersService } from 'src/app/services/career/careers.service';
+import { Career } from 'src/app/models/career';
 
 @Component({
   selector: 'app-add',
@@ -16,14 +18,25 @@ export class AddComponent implements OnInit {
   dni : Number
   address : String
 
+  careers : Array<Career>
+  selectedCareer : Career;
+
   constructor(private studentService : StudentService,
-    private studentApiService : StudentApiService) { }
+    private studentApiService : StudentApiService, 
+    private careerService : CareersService) { }
 
   ngOnInit() {
-
+      this.careerService.getAll()
+        .then((response : any) => {
+          console.log(response);
+          this.careers = response;
+        })
+        .catch(error => {
+          console.log(error);
+        });
   }
 
-  addStudent() {
+  async addStudent() {
       console.log("Adding a student!");
       let student = new Student();
       student.firstName = this.name;
@@ -31,7 +44,7 @@ export class AddComponent implements OnInit {
       student.email = this.email;
       student.dni = this.dni;
       student.address = this.address;
-      student.careerId = 1;
+      student.careerId = this.selectedCareer.id;
 
       //this.studentService.addStudent(student);
       this.studentApiService.insertStudent(student)
@@ -43,6 +56,10 @@ export class AddComponent implements OnInit {
           console.log("Error when inserting student");
           console.log(errorMessage);
         });
+  }
+
+  onCareerSelected() {
+    console.log(this.selectedCareer);
   }
 
   clear() {

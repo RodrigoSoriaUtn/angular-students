@@ -8,4 +8,8 @@ export class Career {
         this.description = ""
     }
 
+    get getId() {
+        return this.id;
+    }
+
 }
