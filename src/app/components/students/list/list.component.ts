@@ -31,12 +31,12 @@ export class ListComponent implements OnInit {
   
   async loadCareers() {
     this.careersService.getAll()
-    .then((response : any) => {
-      response.
-    })
-    .catch(error => {
+      .then((response : any) => {
+        console.log("Obtuvo carreras");
+      })
+      .catch(error => {
 
-    }) 
+      }) 
   }
 
   async loadStudents() {
