@@ -1,15 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
+input.ng-valid.ng-touched { 
+    border-color: rgba(10,255,29,1) !important; box-shadow: none !important; 
+}
+
+input.ng-invalid.ng-touched { 
+    border-color: rgba(255,10,29,1) !important; box-shadow: none !important; 
+} 
+
+input.ng-invalid.ng-touched:focus { 
+    box-shadow: 0 0 0 0.2rem rgba(255,10,29,0.25) !important; 
+}
+
+
 .rs-container-common {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    padding: 2em 2em 0em 2em;
+    padding: 0em 2em 0em 2em;
     margin: 2em 2em 2em 2em;
+
 }
 
-.rs-medium {
-    width: 40%;
-}
-
-.rs-large {
-    width: 80%;
+.rs-vertical-margin {
+    margin-bottom: 1em
 }

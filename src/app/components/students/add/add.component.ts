@@ -33,7 +33,7 @@ export class AddComponent implements OnInit {
       'email' : new FormControl(this.student.email,
         [Validators.required, Validators.email]),
       'dni' : new FormControl(this.student.dni,
-        [Validators.pattern('^[0-9]*$')]),
+        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(10000000), Validators.max(99999999)]),
       'address' : new FormControl(this.student.address),
       'career' : new FormControl(null)
     }) 
@@ -77,12 +77,12 @@ export class AddComponent implements OnInit {
   }
 
   clear() {
-    this.student.firstName = "";
-    this.student.lastName = "";
-    this.student.email = "";
-    this.student.dni = null;
-    this.student.address = "";
-    this.student.careerId = null;
+    this.studentForm.get('firstName').setValue("");
+    this.studentForm.get('lastName').setValue("");
+    this.studentForm.get('email').setValue("");
+    this.studentForm.get('dni').setValue(null);
+    this.studentForm.get('address').setValue("");
+    this.studentForm.get('career').setValue(null);
   }
 
   get firstName() { return this.studentForm.get("firstName") }

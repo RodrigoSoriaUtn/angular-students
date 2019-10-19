@@ -1,65 +1,89 @@
-<div class="rs-container-common rs-medium">
-    <h3>
-        New student
-    </h3>
+<div class="row">
+    <div class="rs-container-common col">
+        <h3 class="add-title">
+            New student
+        </h3>
 
-    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="input-student-name">Name</label>
-            <input type="text" formControlName="firstName" class="form-control" id="input-student-name" placeholder="name">
-            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-                <div *ngIf="firstName.errors.required">
-                    This field is required
+        <form [formGroup]="studentForm" class="needs-validation" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <div class="form-row rs-vertical-margin">
+                    <div class="col">
+                        <label for="input-student-name">Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" id="input-student-name" placeholder="name">
+                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="d-block invalid-feedback">
+                            <div *ngIf="firstName.errors.required">
+                                This field is required
+                            </div>
+                            <div *ngIf="firstName.errors.maxlength">
+                                the maximun length of the first name is 10
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="input-student-surname">Surname</label>
+                        <input type="text" formControlName="lastName" class="form-control" id="input-student-surname" placeholder="surname">
+                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="d-block invalid-feedback">
+                            <div *ngIf="lastName.errors.required">
+                                This field is required
+                            </div>
+                            <div *ngIf="lastName.errors.maxlength">
+                                the maximun length of the last name is 15
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div *ngIf="firstName.errors.maxLength">
-                    the maximun length of the first name is 10
+            
+                <div class="form-row rs-vertical-margin">
+                    <div class="col">
+                        <label for="input-student-email">E-mail</label>
+                        <input type="email" formControlName="email" class="form-control" id="input-student-email" placeholder="email@email">
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="d-block invalid-feedback">
+                            <div *ngIf="email.errors.required">
+                                This field is required
+                            </div>
+                            <div *ngIf="email.errors.email">
+                                The E-mail's format is incorrect
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="input-student-dni">DNI</label>
+                        <input type="number" formControlName="dni" class="form-control" id="input-student-dni">
+                        <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="d-block invalid-feedback">
+                            <div *ngIf="dni.errors.required">
+                                This field is required
+                            </div>
+                            <div *ngIf="dni.errors.pattern">
+                                The DNI must contain only numbers 
+                            </div>
+                            <div *ngIf="dni.errors.min || dni.errors.max">
+                                The DNI must contain eight numbers 
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="form-row"> <label for="input-student-address"> Address </label> </div>
+                <div class="form-row rs-vertical-margin">
+                    <div class="col">
+                        <input type="text" formControlName="address" class="form-control rs-vertical-margin" 
+                            id="input-student-address" placeholder="address">
+                    </div>
+                    <div>
+                        <div class="col ">
+                            <select id="selectedCareerId" formControlName="career" class="form-control">
+                                <option [ngValue]="null" disabled> -- Choose career -- </option>
+                                <option [ngValue]="career" *ngFor="let career of careers"> {{ career.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <input type="submit" [disabled]="!studentForm.valid" class="btn btn-primary" value="Add">
+                </div>
+
             </div>
-
-            <label for="input-student-surname">Surname</label>
-            <input type="text" formControlName="lastName" class="form-control" id="input-student-surname" placeholder="surname">
-            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-                <div *ngIf="lastName.errors.required">
-                    This field is required
-                </div>
-                <div *ngIf="lastName.errors.maxLength">
-                    the maximun length of the last name is 15
-                </div>
-            </div>
-
-            <label for="input-student-email">E-mail</label>
-            <input type="email" formControlName="email" class="form-control" id="input-student-email" placeholder="email@email">
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-                <div *ngIf="email.errors.required">
-                    This field is required
-                </div>
-                <div *ngIf="email.errors.email">
-                    The E-mail's format is incorrect
-                </div>
-            </div>
-
-            <label for="input-student-dni">DNI</label>
-            <input type="number" formControlName="dni" class="form-control" id="input-student-dni">
-            <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="alert alert-danger">
-                <div *ngIf="dni.errors.required">
-                    This field is required
-                </div>
-                <div *ngIf="dni.errors.email">
-                    The DNI must contain only numbers 
-                </div>
-            </div>
-
-            <label for="input-student-address">Address</label>
-            <input type="text" formControlName="address" class="form-control" id="input-student-address" placeholder="address">>
-
-            <select id="selectedCareerId" formControlName="career">
-                <option [ngValue]="null" disabled> -- Choose career -- </option>
-                <option [ngValue]="career" *ngFor="let career of careers"> {{ career.name }}</option>
-            </select>
-
-            <input type="submit" [disabled]="!studentForm.valid" class="btn btn-primary" value="Add">
-
-        </div>
-    </form>
-
+        </form>
+    </div>
 </div>
