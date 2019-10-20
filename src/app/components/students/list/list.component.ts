@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { StudentApiService } from 'src/app/services/student-api.service'
 import { Student } from 'src/app/models/student';
-import { StudentListDTO } from 'src/app/dto/student-list-dto';
+import { StudentToListDTO } from 'src/app/dto/student-to-list-dto';
 import { Career } from 'src/app/models/career';
 import { CareersService } from 'src/app/services/career/careers.service';
 
@@ -14,39 +14,52 @@ import { CareersService } from 'src/app/services/career/careers.service';
 export class ListComponent implements OnInit {
 
   careersMap : Map<Number, Career>
-  studentList : Array<StudentListDTO>
+  studentList : Array<StudentToListDTO>
 
   constructor(private studentService : StudentService, 
     private studentsApiService : StudentApiService,
     private careersService : CareersService) { }
 
   ngOnInit() {
+    this.careersMap = new Map();
+    this.studentList = new Array();
     this.loadData();
   }
 
   async loadData() {
+    this.careersMap.set(null, new Career(null, "none", "no description"))
     await this.loadCareers();
-    await this.loadStudents();
   }
   
   async loadCareers() {
     this.careersService.getAll()
       .then((response : any) => {
-        console.log("Obtuvo carreras");
+        response.forEach((career : Career) => {
+          this.careersMap.set(career.careerId, career)
+        });
+        this.loadStudents()
       })
       .catch(error => {
-
-      }) 
+        console.log("An error happened when obtaining careers : " + error)
+      })
   }
 
   async loadStudents() {
     //this.studentList = this.studentService.getAll()
     this.studentsApiService.getAll()
-      .then((data : any) => {
-        console.log(data)
-        this.studentList = data
-      })
+      .then((data : any) => this.onStudentSuccessfulResponse(data))
       .catch(message => console.log(message)) 
+  }
+
+  onStudentSuccessfulResponse(data : any) {
+    data.forEach( (student : Student) => {
+      let career = this.careersMap.get(student.careerId)
+      let dto = new StudentToListDTO( student.studentId, 
+        student.firstName, student.lastName, student.email, 
+        student.dni, student.address, career.name)
+
+      this.studentList.push(dto)
+    })
   }
 
   public removeStudent(id) {

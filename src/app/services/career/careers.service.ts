@@ -16,7 +16,8 @@ export class CareersService {
   constructor(private httpClient : HttpClient) { }
 
   public getAll() {
-      return this.httpClient.get(this.urlApi, this.httpOptions).toPromise();
+    console.log("Obtaining careers")
+    return this.httpClient.get(this.urlApi, this.httpOptions).toPromise();
   }
 
 }

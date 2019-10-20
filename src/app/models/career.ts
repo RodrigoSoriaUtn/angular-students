@@ -1,15 +1,12 @@
 export class Career {
-    id : Number
+    careerId : Number
     name : String
     description : String
 
-    constructor() {
-        this.name = ""
-        this.description = ""
-    }
-
-    get getId() {
-        return this.id;
+    constructor(careerId : Number, name : String, description : String ) {
+        this.careerId = careerId
+        this.name = name
+        this.description = description
     }
 
 }

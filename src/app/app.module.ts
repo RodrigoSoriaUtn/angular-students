@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { EditComponent } from './components/students/edit/edit.component';
 import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
 import { CareerListComponent } from './components/careers/career-list/career-list.component';
 import { CareerAddComponent } from './components/careers/career-add/career-add.component';
+
+import { faUserEdit, faUserMinus } from '@fortawesome/free-solid-svg-icons'
 
 @NgModule({
   declarations: [
@@ -29,9 +32,15 @@ import { CareerAddComponent } from './components/careers/career-add/career-add.c
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+  constructor(faIconLibrary : FaIconLibrary) {
+    faIconLibrary.addIcons(faUserEdit, faUserMinus);
+  }
+ }
