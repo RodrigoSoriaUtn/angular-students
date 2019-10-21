@@ -62,10 +62,19 @@ export class ListComponent implements OnInit {
     })
   }
 
-  public removeStudent(id) {
-    console.log("actually not working. The api does not have a delete endpoint")
+  async removeStudent(id : Number) {
     //this.studentService.deleteStudentById(id)
-    //this.studentList = this.studentService.getAll();
+    this.studentsApiService.deleteStudent(id)
+      .then((response : any) => {
+        this.removeStudentFromList(id)
+      }).catch(error => {
+        console.log("An error happened while removing student : ")
+        console.log(error)
+      })
+  }
+
+  async removeStudentFromList (id : Number) {
+    this.studentList = this.studentList.filter(e => e.studentId === id)
   }
 
 }

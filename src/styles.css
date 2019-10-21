@@ -26,6 +26,14 @@ input.ng-invalid.ng-touched:focus {
     margin-bottom: 1em
 }
 
+.rs-left-margin {
+    margin-left: 1em;
+}
+
+.rs-right-margin {
+    margin-right: 1em;
+}
+
 .rs-text-centered {
     text-align: center;
 }

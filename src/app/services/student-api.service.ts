@@ -37,4 +37,9 @@ export class StudentApiService {
     return this.http.get(this.apiUrl, this.httpOptions).toPromise()
   }
 
+  deleteStudent(studentId : Number) {
+    console.log("deleting student with id : " + studentId)
+    return this.http.delete(this.apiUrl, this.httpOptions).toPromise()
+  }
+
 }

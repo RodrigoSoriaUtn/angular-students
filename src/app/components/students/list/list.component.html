@@ -1,29 +1,27 @@
 <div class="rs-container-common">
-        <table class="table table-dark table-bordered table-striped">
-
-            <thead>
-                <tr>
-                    <td> Name </td>
-                    <td> Surname </td>
-                    <td> E-mail </td>
-                    <td> DNI </td>
-                    <td> Career </td>
-                    <td colspan="2" class="rs-text-centered">Actions</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let student of studentList">
-                    <td> {{ student.firstName }} </td>
-                    <td> {{ student.lastName }} </td>
-                    <td> {{ student.email }} </td>
-                    <td> {{ student.dni }} </td>
-                    <td> {{ student.careerName }} </td>
-                    <td colspan="2" class="row border-0"> 
-                        <button class="btn btn-success col" [routerLink]="['/students/edit/', student.studentId]"> <fa-icon icon="user-edit"></fa-icon> </button>
-                        <button class="btn btn-danger col" (click)="removeStudent(student.studentId)" > <fa-icon icon="user-minus"></fa-icon> </button> 
-                    </td>
-                </tr>
-            </tbody>
-        
-        </table>
+    <table class="table table-dark table-bordered table-striped">
+        <thead>
+            <tr>
+                <td> Name </td>
+                <td> Surname </td>
+                <td> E-mail </td>
+                <td> DNI </td>
+                <td> Career </td>
+                <td colspan="2" class="rs-text-centered">Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of studentList">
+                <td> {{ student.firstName }} </td>
+                <td> {{ student.lastName }} </td>
+                <td> {{ student.email }} </td>
+                <td> {{ student.dni }} </td>
+                <td> {{ student.careerName }} </td>
+                <td colspan="2" class="row border-0 rs-centered"> 
+                    <button class="btn btn-success rs-left-margin rs-right-margin" [routerLink]="['/students/edit/', student.studentId]"> <fa-icon icon="user-edit"></fa-icon> </button>
+                    <button class="btn btn-danger rs-right-margin" (click)="removeStudent(student.studentId)" > <fa-icon icon="user-minus"></fa-icon> </button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
