@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login/login.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, EmailValidator } from '@angular/forms';
+import { UserDto } from 'src/app/dto/login/user-dto';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,17 +17,39 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.signInFormGroup = new FormGroup({
       'email' : new FormControl(null, 
-        [Validators.required, Validators.email]),
+        [Validators.required, Validators.email],
+        [this.emailExistentValidator.bind(this)]),
       'password' : new FormControl(null,
-        [Validators.required, Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')])
+        [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}")])
     })
   }
 
   async onSubmit() {
-
+      let userDto = new UserDto(this.signInFormGroup.get('email').value, this.signInFormGroup.get('password').value);
+      this.loginService.signIn(userDto)
+        .then(resp => {
+          console.log("Correctly sign in ! : " + resp)
+        }).catch(error => {
+          console.log("Error when siging in : ")
+          console.log(error)
+        })
   }
 
   get email() { return this.signInFormGroup.get('email') }
   get password() { return this.signInFormGroup.get('password') }
   
+  // Validators
+
+  emailExistentValidator(control : AbstractControl) {
+    return this.loginService.validateUserExistence(control.value).then(resp => {
+        return null;
+    }).catch(error => {
+        console.log("error message from api : ")
+        console.log(error)
+        if (error.status == 409) {
+          return {'emailExistentValidator' : { value : control.value}}
+        }
+    })
+  }
+
 }

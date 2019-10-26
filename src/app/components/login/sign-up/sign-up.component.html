@@ -10,9 +10,6 @@
                 <div *ngIf="email.errors.email">
                     The E-mail format is incorrect
                 </div>
-                <div *ngIf="email.errors.emailExistentValidator">
-                    The E-mail is already in use
-                </div>
             </div>
         </div>
 
@@ -30,12 +27,26 @@
         </div>
 
         <div class="form-row rs-vertical-margin">
+            <label for="input-password">Confirm password</label>
+            <input type="password" class="form-control" formControlName="password" id="input-password">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="d-block invalid-feedback">
+                <div *ngIf="password.errors.required">
+                    This field is required
+                </div>
+                <div *ngIf="password.errors.pattern">
+                    The password must contain one uppercase letter, one lowercase letter, a digit and 8 to 16 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row rs-vertical-margin">
             <div class="col">
-                <a href="">New here? Sign up! </a>
+                <a href="">Already have an account? Sign in! </a>
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary"> sign in </button>
+                <button type="submit" class="btn btn-primary"> sign up </button>
             </div>
         </div>
     </form>
 </div>
+

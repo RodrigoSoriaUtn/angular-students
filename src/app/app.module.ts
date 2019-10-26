@@ -15,7 +15,8 @@ import { CareerListComponent } from './components/careers/career-list/career-lis
 import { CareerAddComponent } from './components/careers/career-add/career-add.component';
 
 import { faUserEdit, faUserMinus } from '@fortawesome/free-solid-svg-icons';
-import { SignInComponent } from './components/login/sign-in/sign-in.component'
+import { SignInComponent } from './components/login/sign-in/sign-in.component';
+import { SignUpComponent } from './components/login/sign-up/sign-up.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SignInComponent } from './components/login/sign-in/sign-in.component'
     PageNotFoundComponent,
     CareerListComponent,
     CareerAddComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     HttpClientModule,
