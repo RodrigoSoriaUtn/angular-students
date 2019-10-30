@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserDto } from 'src/app/dto/login/user-dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,7 @@ export class SignUpComponent implements OnInit {
 
   signUpFormGroup : FormGroup
 
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService : LoginService, private router : Router) { }
 
   ngOnInit() {
     this.signUpFormGroup = new FormGroup({
@@ -20,7 +21,7 @@ export class SignUpComponent implements OnInit {
         [Validators.required, Validators.email],
         [this.emailExistentValidator.bind(this)]),
       'password' : new FormControl(null,
-        [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}")])
+        [Validators.required, Validators.pattern(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}/)])
     })
   }
 
@@ -28,8 +29,7 @@ export class SignUpComponent implements OnInit {
     let userDto = new UserDto(this.signUpFormGroup.get('email').value, this.signUpFormGroup.get('password').value);
     this.loginService.signUp(userDto)
       .then(resp => {
-        signIn(userDto);
-        console.log("Correctly sign up ! : " + resp)
+        this.signIn(userDto);
       }).catch(error => {
         console.log("Error when siging up : ")
         console.log(error)
@@ -39,10 +39,16 @@ export class SignUpComponent implements OnInit {
   async signIn(userDto : UserDto) {
     this.loginService.signIn(userDto)
       .then((resp : any) => {
-        console.log("signed in!")
+        this.router.navigateByUrl("/students")
       }).catch((error : any) => {
         console.log("error while sign in on the sign up.")
+        console.log(error)
+        this.router.navigateByUrl("")
       })
+  }
+
+  onSignInClick() {
+    this.router.navigateByUrl("")
   }
 
   get email() { return this.signUpFormGroup.get('email') }
