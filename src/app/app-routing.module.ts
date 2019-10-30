@@ -7,17 +7,21 @@ import { PageNotFoundComponent } from './components/common/page-not-found/page-n
 import { CareerListComponent } from './components/careers/career-list/career-list.component';
 import { CareerAddComponent } from './components/careers/career-add/career-add.component';
 import { SignInComponent } from './components/login/sign-in/sign-in.component';
+import { SignUpComponent } from './components/login/sign-up/sign-up.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
-  {path:"", component:SignInComponent, pathMatch:"full"},
-  {path:"students/add", component:AddComponent},
-  {path:"students/list", component:ListComponent},
-  {path:"students/edit/:id", component:EditComponent},
-  {path:"careers/list", component:CareerListComponent},
-  {path:"careers/add", component:CareerAddComponent},
-  {path:"careers", component:CareerListComponent},
-  {path:"**", component:PageNotFoundComponent}
+  {path:"", component : SignInComponent, pathMatch : "full"},
+  {path:"signup", component : SignUpComponent, pathMatch : "full"},
+  {path:"students/add", component : AddComponent, canActivate : [AuthGuard]}, // TODO : find a way to make a validation per "parent" url
+  {path:"students", component : ListComponent, canActivate : [AuthGuard], pathMatch : "full"},
+  {path:"students/list", component : ListComponent, canActivate : [AuthGuard]},
+  {path:"students/edit/:id", component : EditComponent, canActivate : [AuthGuard]},
+  {path:"careers/list", component : CareerListComponent, canActivate : [AuthGuard]},
+  {path:"careers/add", component : CareerAddComponent, canActivate : [AuthGuard]},
+  {path:"careers", component : CareerListComponent, canActivate : [AuthGuard], pathMatch : "full"},
+  {path:"**", component : PageNotFoundComponent}
 ];
 
 @NgModule({

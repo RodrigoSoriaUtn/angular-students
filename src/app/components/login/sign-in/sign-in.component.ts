@@ -17,8 +17,7 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.signInFormGroup = new FormGroup({
       'email' : new FormControl(null, 
-        [Validators.required, Validators.email],
-        [this.emailExistentValidator.bind(this)]),
+        [Validators.required, Validators.email]),
       'password' : new FormControl(null,
         [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}")])
     })
@@ -38,18 +37,4 @@ export class SignInComponent implements OnInit {
   get email() { return this.signInFormGroup.get('email') }
   get password() { return this.signInFormGroup.get('password') }
   
-  // Validators
-
-  emailExistentValidator(control : AbstractControl) {
-    return this.loginService.validateUserExistence(control.value).then(resp => {
-        return null;
-    }).catch(error => {
-        console.log("error message from api : ")
-        console.log(error)
-        if (error.status == 409) {
-          return {'emailExistentValidator' : { value : control.value}}
-        }
-    })
-  }
-
 }

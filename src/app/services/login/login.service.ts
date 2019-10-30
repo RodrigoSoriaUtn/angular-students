@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserDto } from 'src/app/dto/login/user-dto';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class LoginService {
     })
   }
 
-  constructor(private httpClient : HttpClient) { 
+  constructor(private httpClient : HttpClient) {
 
   }
 
