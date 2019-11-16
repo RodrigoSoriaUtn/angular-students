@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,9 +19,17 @@ export class AuthRequestInterceptorService implements HttpInterceptor {
         Authorization : 'Bearer ' + jwt
       }
     })
-    console.log("Intercepted request. Adding token : " + jwt)
 
-    return next.handle(request)
+    return next.handle(request).pipe(
+      catchError((err : HttpErrorResponse) => {
+
+        if (err.status === 401) {
+          this.router.navigateByUrl("")
+        }
+
+        return throwError( err )
+      })
+    )
   }
 
 }
