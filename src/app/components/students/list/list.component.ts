@@ -32,23 +32,20 @@ export class ListComponent implements OnInit {
   }
   
   async loadCareers() {
-    this.careersService.getAll()
-      .then((response : any) => {
-        response.forEach((career : Career) => {
-          this.careersMap.set(career.careerId, career)
-        });
+    this.careersService.getAll().subscribe( 
+      (response : any) => {
+        response.forEach((career : Career) => this.careersMap.set(career.careerId, career))
         this.loadStudents()
-      })
-      .catch(error => {
-        console.log("An error happened when obtaining careers : " + error)
-      })
+      },
+      error => console.log("An error happened when obtaining careers : " + error)
+    )
   }
 
   async loadStudents() {
     //this.studentList = this.studentService.getAll()
-    this.studentsApiService.getAll()
-      .then((data : any) => this.onStudentSuccessfulResponse(data))
-      .catch(message => console.log(message)) 
+    this.studentsApiService.getAll().subscribe(
+      response => this.onStudentSuccessfulResponse(response), 
+      error => console.log(error))
   }
 
   onStudentSuccessfulResponse(data : any) {
@@ -64,10 +61,9 @@ export class ListComponent implements OnInit {
 
   async removeStudent(id : Number) {
     //this.studentService.deleteStudentById(id)
-    this.studentsApiService.deleteStudent(id)
-      .then((response : any) => {
-        this.removeStudentFromList(id)
-      }).catch(error => {
+    this.studentsApiService.deleteStudent(id).subscribe(
+      response => this.removeStudentFromList(id),
+      error => {
         console.log("An error happened while removing student : ")
         console.log(error)
       })

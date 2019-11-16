@@ -37,14 +37,14 @@ export class SignUpComponent implements OnInit {
   }
 
   async signIn(userDto : UserDto) {
-    this.loginService.signIn(userDto)
-      .then((resp : any) => {
-        this.router.navigateByUrl("/students")
-      }).catch((error : any) => {
+    this.loginService.signIn(userDto).subscribe(
+      response => this.router.navigateByUrl("/students"),
+      error => {
         console.log("error while sign in on the sign up.")
         console.log(error)
         this.router.navigateByUrl("")
-      })
+      }
+    )
   }
 
   onSignInClick() {

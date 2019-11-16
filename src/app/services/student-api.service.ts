@@ -34,12 +34,12 @@ export class StudentApiService {
 
   getAll() {
     console.log("Getting students");
-    return this.http.get(this.apiUrl, this.httpOptions).toPromise()
+    return this.http.get(this.apiUrl, this.httpOptions)
   }
 
   deleteStudent(studentId : Number) {
     console.log("deleting student with id : " + studentId)
-    return this.http.delete(this.apiUrl + "/" + studentId, this.httpOptions).toPromise()
+    return this.http.delete(this.apiUrl + "/" + studentId, this.httpOptions)
   }
 
 }

@@ -23,7 +23,7 @@ export class LoginService {
   }
 
   signIn(userDto : UserDto) {  
-    return this.httpClient.post(this.urlSignIn, userDto, this.httpOptions).toPromise()
+    return this.httpClient.post(this.urlSignIn, userDto, this.httpOptions)
   }
 
   signUp(userDto : UserDto) {

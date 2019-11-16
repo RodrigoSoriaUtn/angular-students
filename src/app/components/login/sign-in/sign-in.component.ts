@@ -28,14 +28,15 @@ export class SignInComponent implements OnInit {
 
   async onSubmit() {
     let userDto = new UserDto(this.signInFormGroup.get('email').value, this.signInFormGroup.get('password').value);
-    this.loginService.signIn(userDto)
-      .then((resp : any) => {
-        this.userService.saveToken(resp.jwt);
+    this.loginService.signIn(userDto).subscribe(
+      (resp : any) => {
+        this.userService.saveToken(resp.jwt)
         this.redirectUserLogged()
-      }).catch((error : any) => {
+      },
+      error => {
         if (error.status === 401) {
           this.signInFormGroup.get("badCredentials").setValue("email or password are incorrect");
-        }
+        } 
       })
   }
 

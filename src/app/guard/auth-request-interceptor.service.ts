@@ -12,7 +12,7 @@ export class AuthRequestInterceptorService implements HttpInterceptor {
   constructor(private router : Router) { }
 
   intercept(req : HttpRequest<any>, next : HttpHandler) : Observable<HttpEvent<any>> {
-    let jwt = localStorage.getItem("jwt")
+    const jwt = localStorage.getItem("jwt")
 
     let request = req.clone({
       setHeaders : {

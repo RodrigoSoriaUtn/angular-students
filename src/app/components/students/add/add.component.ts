@@ -39,14 +39,10 @@ export class AddComponent implements OnInit {
     }) 
 
 
-    this.careerService.getAll()
-      .then((response : any) => {
-        console.log(response);
-        this.careers = response;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.careerService.getAll().subscribe(
+      (response : any) => this.careers = response,
+      error => console.log(error)
+    )
   }
 
   async onSubmit() {
