@@ -20,6 +20,7 @@ export class AuthGuard implements CanActivate {
   validateloggedUser(url : string) : boolean {
     if (this.userService.isValid()) return true; 
     
+    console.log("Not logged user. Redirecting to login");
     this.userService.redirectUrl = url;
     this.router.navigateByUrl("")
     return false;

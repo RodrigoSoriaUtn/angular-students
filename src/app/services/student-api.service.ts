@@ -24,7 +24,7 @@ export class StudentApiService {
   }
 
   updateStudent(student : Student) {
-    return this.http.patch(this.apiUrl, student, this.httpOptions).toPromise()
+    return this.http.patch(this.apiUrl + "/" + student.studentId, student, this.httpOptions).toPromise()
   }
 
   getStudentById(studentId : Number) {
@@ -39,7 +39,7 @@ export class StudentApiService {
 
   deleteStudent(studentId : Number) {
     console.log("deleting student with id : " + studentId)
-    return this.http.delete(this.apiUrl, this.httpOptions).toPromise()
+    return this.http.delete(this.apiUrl + "/" + studentId, this.httpOptions).toPromise()
   }
 
 }

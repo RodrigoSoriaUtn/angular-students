@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
     let userDto = new UserDto(this.signInFormGroup.get('email').value, this.signInFormGroup.get('password').value);
     this.loginService.signIn(userDto)
       .then((resp : any) => {
-        this.userService.userToken = resp.jwt;
+        this.userService.saveToken(resp.jwt);
         this.redirectUserLogged()
       }).catch((error : any) => {
         if (error.status === 401) {

@@ -5,13 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  userToken : String;
   redirectUrl: string;
 
   constructor() { }
 
-  public isValid(){ 
-    return this.userToken; // TODO : should improve logic for user token storage.
+  public isValid() { 
+    return localStorage.getItem("jwt");
+  }
+  
+  public saveToken(token) {
+    localStorage.setItem("jwt", token)
   }
 
 }

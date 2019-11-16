@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,7 @@ import { CareerAddComponent } from './components/careers/career-add/career-add.c
 import { faUserEdit, faUserMinus } from '@fortawesome/free-solid-svg-icons';
 import { SignInComponent } from './components/login/sign-in/sign-in.component';
 import { SignUpComponent } from './components/login/sign-up/sign-up.component'
+import { AuthRequestInterceptorService } from './guard/auth-request-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,13 @@ import { SignUpComponent } from './components/login/sign-up/sign-up.component'
     AppRoutingModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [ 
+    {
+      provide : HTTP_INTERCEPTORS, 
+      useClass : AuthRequestInterceptorService, 
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

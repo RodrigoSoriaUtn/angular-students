@@ -74,7 +74,7 @@ export class ListComponent implements OnInit {
   }
 
   async removeStudentFromList (id : Number) {
-    this.studentList = this.studentList.filter(e => e.studentId === id)
+    this.studentList = this.studentList.filter(e => !(e.studentId === id))
   }
 
 }
